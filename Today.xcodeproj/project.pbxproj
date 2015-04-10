@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		A260F0521AD866BA00C18EB6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0511AD866BA00C18EB6 /* AppDelegate.swift */; };
-		A260F0541AD866BA00C18EB6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0531AD866BA00C18EB6 /* ViewController.swift */; };
-		A260F0571AD866BA00C18EB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A260F0551AD866BA00C18EB6 /* Main.storyboard */; };
+		A260F0541AD866BA00C18EB6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0531AD866BA00C18EB6 /* MainViewController.swift */; };
 		A260F0591AD866BA00C18EB6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A260F0581AD866BA00C18EB6 /* Images.xcassets */; };
 		A260F05C1AD866BA00C18EB6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A260F05A1AD866BA00C18EB6 /* LaunchScreen.xib */; };
 		A260F0681AD866BA00C18EB6 /* TodayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0671AD866BA00C18EB6 /* TodayTests.swift */; };
 		A260F0721AD86A5600C18EB6 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0711AD86A5600C18EB6 /* Weather.swift */; };
 		A260F0741AD86C9600C18EB6 /* Blurb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0731AD86C9600C18EB6 /* Blurb.swift */; };
+		A260F0771AD875EB00C18EB6 /* BlurbTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0761AD875EB00C18EB6 /* BlurbTableCell.swift */; };
+		A260F0791AD8769400C18EB6 /* BlurbsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0781AD8769400C18EB6 /* BlurbsManager.swift */; };
+		A260F08E1AD879D400C18EB6 /* Snap.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A260F0841AD877E900C18EB6 /* Snap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,14 +27,62 @@
 			remoteGlobalIDString = A260F04B1AD866BA00C18EB6;
 			remoteInfo = Today;
 		};
+		A260F0811AD877E900C18EB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEBCC9D819CC627D0083B827;
+			remoteInfo = "Snap iOS";
+		};
+		A260F0831AD877E900C18EB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EECDB37A1AC0C9D4006BBC11;
+			remoteInfo = "Snap OSX";
+		};
+		A260F0851AD877E900C18EB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EEBCC9E219CC627E0083B827;
+			remoteInfo = "Snap iOS Tests";
+		};
+		A260F0871AD877E900C18EB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EECDB3841AC0C9D4006BBC11;
+			remoteInfo = "Snap OSX Tests";
+		};
+		A260F08A1AD8798900C18EB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EEBCC9D719CC627D0083B827;
+			remoteInfo = "Snap iOS";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A260F08C1AD879B600C18EB6 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A260F08E1AD879D400C18EB6 /* Snap.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A260F04C1AD866BA00C18EB6 /* Today.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Today.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A260F0501AD866BA00C18EB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A260F0511AD866BA00C18EB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A260F0531AD866BA00C18EB6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A260F0561AD866BA00C18EB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A260F0531AD866BA00C18EB6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A260F0581AD866BA00C18EB6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A260F05B1AD866BA00C18EB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A260F0611AD866BA00C18EB6 /* TodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +90,9 @@
 		A260F0671AD866BA00C18EB6 /* TodayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTests.swift; sourceTree = "<group>"; };
 		A260F0711AD86A5600C18EB6 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		A260F0731AD86C9600C18EB6 /* Blurb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blurb.swift; sourceTree = "<group>"; };
+		A260F0761AD875EB00C18EB6 /* BlurbTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurbTableCell.swift; sourceTree = "<group>"; };
+		A260F0781AD8769400C18EB6 /* BlurbsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurbsManager.swift; sourceTree = "<group>"; };
+		A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Snap.xcodeproj; path = Snap/Snap.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +116,7 @@
 		A260F0431AD866BA00C18EB6 = {
 			isa = PBXGroup;
 			children = (
+				A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */,
 				A260F04E1AD866BA00C18EB6 /* Today */,
 				A260F0641AD866BA00C18EB6 /* TodayTests */,
 				A260F04D1AD866BA00C18EB6 /* Products */,
@@ -84,8 +138,9 @@
 				A260F0511AD866BA00C18EB6 /* AppDelegate.swift */,
 				A260F0711AD86A5600C18EB6 /* Weather.swift */,
 				A260F0731AD86C9600C18EB6 /* Blurb.swift */,
-				A260F0531AD866BA00C18EB6 /* ViewController.swift */,
-				A260F0551AD866BA00C18EB6 /* Main.storyboard */,
+				A260F0531AD866BA00C18EB6 /* MainViewController.swift */,
+				A260F0761AD875EB00C18EB6 /* BlurbTableCell.swift */,
+				A260F0781AD8769400C18EB6 /* BlurbsManager.swift */,
 				A260F0581AD866BA00C18EB6 /* Images.xcassets */,
 				A260F05A1AD866BA00C18EB6 /* LaunchScreen.xib */,
 				A260F04F1AD866BA00C18EB6 /* Supporting Files */,
@@ -118,6 +173,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A260F07B1AD877E900C18EB6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A260F0821AD877E900C18EB6 /* Snap.framework */,
+				A260F0841AD877E900C18EB6 /* Snap.framework */,
+				A260F0861AD877E900C18EB6 /* Snap iOS Tests.xctest */,
+				A260F0881AD877E900C18EB6 /* Snap OSX Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,10 +194,12 @@
 				A260F0481AD866BA00C18EB6 /* Sources */,
 				A260F0491AD866BA00C18EB6 /* Frameworks */,
 				A260F04A1AD866BA00C18EB6 /* Resources */,
+				A260F08C1AD879B600C18EB6 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A260F08B1AD8798900C18EB6 /* PBXTargetDependency */,
 			);
 			name = Today;
 			productName = Today;
@@ -185,6 +253,12 @@
 			mainGroup = A260F0431AD866BA00C18EB6;
 			productRefGroup = A260F04D1AD866BA00C18EB6 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A260F07B1AD877E900C18EB6 /* Products */;
+					ProjectRef = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A260F04B1AD866BA00C18EB6 /* Today */,
@@ -193,12 +267,42 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		A260F0821AD877E900C18EB6 /* Snap.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Snap.framework;
+			remoteRef = A260F0811AD877E900C18EB6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A260F0841AD877E900C18EB6 /* Snap.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Snap.framework;
+			remoteRef = A260F0831AD877E900C18EB6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A260F0861AD877E900C18EB6 /* Snap iOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Snap iOS Tests.xctest";
+			remoteRef = A260F0851AD877E900C18EB6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A260F0881AD877E900C18EB6 /* Snap OSX Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Snap OSX Tests.xctest";
+			remoteRef = A260F0871AD877E900C18EB6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		A260F04A1AD866BA00C18EB6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A260F0571AD866BA00C18EB6 /* Main.storyboard in Resources */,
 				A260F05C1AD866BA00C18EB6 /* LaunchScreen.xib in Resources */,
 				A260F0591AD866BA00C18EB6 /* Images.xcassets in Resources */,
 			);
@@ -218,10 +322,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A260F0541AD866BA00C18EB6 /* ViewController.swift in Sources */,
+				A260F0541AD866BA00C18EB6 /* MainViewController.swift in Sources */,
+				A260F0791AD8769400C18EB6 /* BlurbsManager.swift in Sources */,
 				A260F0741AD86C9600C18EB6 /* Blurb.swift in Sources */,
 				A260F0721AD86A5600C18EB6 /* Weather.swift in Sources */,
 				A260F0521AD866BA00C18EB6 /* AppDelegate.swift in Sources */,
+				A260F0771AD875EB00C18EB6 /* BlurbTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,17 +347,14 @@
 			target = A260F04B1AD866BA00C18EB6 /* Today */;
 			targetProxy = A260F0621AD866BA00C18EB6 /* PBXContainerItemProxy */;
 		};
+		A260F08B1AD8798900C18EB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Snap iOS";
+			targetProxy = A260F08A1AD8798900C18EB6 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A260F0551AD866BA00C18EB6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A260F0561AD866BA00C18EB6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A260F05A1AD866BA00C18EB6 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
