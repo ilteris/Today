@@ -12,11 +12,15 @@
 		A260F0591AD866BA00C18EB6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A260F0581AD866BA00C18EB6 /* Images.xcassets */; };
 		A260F05C1AD866BA00C18EB6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A260F05A1AD866BA00C18EB6 /* LaunchScreen.xib */; };
 		A260F0681AD866BA00C18EB6 /* TodayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0671AD866BA00C18EB6 /* TodayTests.swift */; };
-		A260F0721AD86A5600C18EB6 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0711AD86A5600C18EB6 /* Weather.swift */; };
+		A260F0721AD86A5600C18EB6 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0711AD86A5600C18EB6 /* CurrentWeather.swift */; };
 		A260F0741AD86C9600C18EB6 /* Blurb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0731AD86C9600C18EB6 /* Blurb.swift */; };
 		A260F0771AD875EB00C18EB6 /* BlurbTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0761AD875EB00C18EB6 /* BlurbTableCell.swift */; };
 		A260F0791AD8769400C18EB6 /* BlurbsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0781AD8769400C18EB6 /* BlurbsManager.swift */; };
 		A260F08E1AD879D400C18EB6 /* Snap.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A260F0841AD877E900C18EB6 /* Snap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A260F0921ADAC21800C18EB6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A260F0911ADAC21700C18EB6 /* CoreLocation.framework */; };
+		A260F0941ADAC2F900C18EB6 /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = A260F0931ADAC2F900C18EB6 /* Location.gpx */; };
+		A260F0961ADAC36100C18EB6 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0951ADAC36100C18EB6 /* LocationService.swift */; };
+		A2FEBD241ADB17C6009EA785 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD231ADB17C6009EA785 /* WeatherService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,11 +92,16 @@
 		A260F0611AD866BA00C18EB6 /* TodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A260F0661AD866BA00C18EB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A260F0671AD866BA00C18EB6 /* TodayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTests.swift; sourceTree = "<group>"; };
-		A260F0711AD86A5600C18EB6 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		A260F0711AD86A5600C18EB6 /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		A260F0731AD86C9600C18EB6 /* Blurb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blurb.swift; sourceTree = "<group>"; };
 		A260F0761AD875EB00C18EB6 /* BlurbTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurbTableCell.swift; sourceTree = "<group>"; };
 		A260F0781AD8769400C18EB6 /* BlurbsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurbsManager.swift; sourceTree = "<group>"; };
 		A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Snap.xcodeproj; path = Snap/Snap.xcodeproj; sourceTree = "<group>"; };
+		A260F0911ADAC21700C18EB6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A260F0931ADAC2F900C18EB6 /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
+		A260F0951ADAC36100C18EB6 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		A2FEBD221ADAE7EC009EA785 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
+		A2FEBD231ADB17C6009EA785 /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A260F0921ADAC21800C18EB6 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +126,7 @@
 		A260F0431AD866BA00C18EB6 = {
 			isa = PBXGroup;
 			children = (
+				A260F0911ADAC21700C18EB6 /* CoreLocation.framework */,
 				A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */,
 				A260F04E1AD866BA00C18EB6 /* Today */,
 				A260F0641AD866BA00C18EB6 /* TodayTests */,
@@ -135,12 +146,15 @@
 		A260F04E1AD866BA00C18EB6 /* Today */ = {
 			isa = PBXGroup;
 			children = (
+				A2FEBD221ADAE7EC009EA785 /* Avenir Next.ttc */,
 				A260F0511AD866BA00C18EB6 /* AppDelegate.swift */,
-				A260F0711AD86A5600C18EB6 /* Weather.swift */,
+				A260F0711AD86A5600C18EB6 /* CurrentWeather.swift */,
 				A260F0731AD86C9600C18EB6 /* Blurb.swift */,
 				A260F0531AD866BA00C18EB6 /* MainViewController.swift */,
 				A260F0761AD875EB00C18EB6 /* BlurbTableCell.swift */,
 				A260F0781AD8769400C18EB6 /* BlurbsManager.swift */,
+				A260F0951ADAC36100C18EB6 /* LocationService.swift */,
+				A2FEBD231ADB17C6009EA785 /* WeatherService.swift */,
 				A260F0581AD866BA00C18EB6 /* Images.xcassets */,
 				A260F05A1AD866BA00C18EB6 /* LaunchScreen.xib */,
 				A260F04F1AD866BA00C18EB6 /* Supporting Files */,
@@ -151,6 +165,7 @@
 		A260F04F1AD866BA00C18EB6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A260F0931ADAC2F900C18EB6 /* Location.gpx */,
 				A260F0501AD866BA00C18EB6 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -304,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A260F05C1AD866BA00C18EB6 /* LaunchScreen.xib in Resources */,
+				A260F0941ADAC2F900C18EB6 /* Location.gpx in Resources */,
 				A260F0591AD866BA00C18EB6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,10 +338,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2FEBD241ADB17C6009EA785 /* WeatherService.swift in Sources */,
+				A260F0961ADAC36100C18EB6 /* LocationService.swift in Sources */,
 				A260F0541AD866BA00C18EB6 /* MainViewController.swift in Sources */,
 				A260F0791AD8769400C18EB6 /* BlurbsManager.swift in Sources */,
 				A260F0741AD86C9600C18EB6 /* Blurb.swift in Sources */,
-				A260F0721AD86A5600C18EB6 /* Weather.swift in Sources */,
+				A260F0721AD86A5600C18EB6 /* CurrentWeather.swift in Sources */,
 				A260F0521AD866BA00C18EB6 /* AppDelegate.swift in Sources */,
 				A260F0771AD875EB00C18EB6 /* BlurbTableCell.swift in Sources */,
 			);
@@ -520,6 +538,7 @@
 				A260F06D1AD866BA00C18EB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A260F06E1AD866BA00C18EB6 /* Build configuration list for PBXNativeTarget "TodayTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +547,7 @@
 				A260F0701AD866BA00C18EB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
