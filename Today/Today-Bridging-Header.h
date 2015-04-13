@@ -6,5 +6,3 @@
 //  Copyright (c) 2015 ilteris. All rights reserved.
 //
 
-#import "YapDatabase/YapDatabase.h"
-
