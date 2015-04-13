@@ -21,7 +21,10 @@
 		A260F0941ADAC2F900C18EB6 /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = A260F0931ADAC2F900C18EB6 /* Location.gpx */; };
 		A260F0961ADAC36100C18EB6 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0951ADAC36100C18EB6 /* LocationService.swift */; };
 		A2FEBD241ADB17C6009EA785 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD231ADB17C6009EA785 /* WeatherService.swift */; };
-		C3E2B354A25DC74547A31C6B /* libPods-Today.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F22FC7E50F12F0AF1921346 /* libPods-Today.a */; };
+		A2FEBD671ADB4B3C009EA785 /* BlurbAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD661ADB4B3C009EA785 /* BlurbAddViewController.swift */; };
+		A2FEBD981ADC3712009EA785 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD971ADC3712009EA785 /* RLMSupport.swift */; };
+		A2FEBD9D1ADC58FB009EA785 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD9C1ADC58FB009EA785 /* SectionHeaderView.swift */; };
+		D59AB225B0AD272F30D3B359 /* Pods_Today.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEB7661DF03D926634F72D7 /* Pods_Today.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +87,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6F22FC7E50F12F0AF1921346 /* libPods-Today.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Today.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FEB7661DF03D926634F72D7 /* Pods_Today.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Today.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CBE4C27395F8D742AD2CF45 /* Pods-Today.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Today.release.xcconfig"; path = "Pods/Target Support Files/Pods-Today/Pods-Today.release.xcconfig"; sourceTree = "<group>"; };
 		A260F04C1AD866BA00C18EB6 /* Today.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Today.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A260F0501AD866BA00C18EB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,6 +109,9 @@
 		A2FEBD221ADAE7EC009EA785 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
 		A2FEBD231ADB17C6009EA785 /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		A2FEBD2B1ADB39E5009EA785 /* Today-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Today-Bridging-Header.h"; sourceTree = "<group>"; };
+		A2FEBD661ADB4B3C009EA785 /* BlurbAddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurbAddViewController.swift; sourceTree = "<group>"; };
+		A2FEBD971ADC3712009EA785 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
+		A2FEBD9C1ADC58FB009EA785 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		D18774D0A94FDE1279102236 /* Pods-Today.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Today.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Today/Pods-Today.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,7 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A260F0921ADAC21800C18EB6 /* CoreLocation.framework in Frameworks */,
-				C3E2B354A25DC74547A31C6B /* libPods-Today.a in Frameworks */,
+				D59AB225B0AD272F30D3B359 /* Pods_Today.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +147,7 @@
 		A260F0431AD866BA00C18EB6 = {
 			isa = PBXGroup;
 			children = (
+				A2FEBD971ADC3712009EA785 /* RLMSupport.swift */,
 				A260F0911ADAC21700C18EB6 /* CoreLocation.framework */,
 				A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */,
 				A260F04E1AD866BA00C18EB6 /* Today */,
@@ -164,12 +171,14 @@
 			isa = PBXGroup;
 			children = (
 				A2FEBD221ADAE7EC009EA785 /* Avenir Next.ttc */,
+				A260F0781AD8769400C18EB6 /* BlurbsManager.swift */,
 				A260F0511AD866BA00C18EB6 /* AppDelegate.swift */,
 				A260F0711AD86A5600C18EB6 /* CurrentWeather.swift */,
 				A260F0731AD86C9600C18EB6 /* Blurb.swift */,
 				A260F0531AD866BA00C18EB6 /* MainViewController.swift */,
+				A2FEBD9C1ADC58FB009EA785 /* SectionHeaderView.swift */,
 				A260F0761AD875EB00C18EB6 /* BlurbTableCell.swift */,
-				A260F0781AD8769400C18EB6 /* BlurbsManager.swift */,
+				A2FEBD661ADB4B3C009EA785 /* BlurbAddViewController.swift */,
 				A260F0951ADAC36100C18EB6 /* LocationService.swift */,
 				A2FEBD231ADB17C6009EA785 /* WeatherService.swift */,
 				A260F0581AD866BA00C18EB6 /* Images.xcassets */,
@@ -220,7 +229,7 @@
 		AA23ED788DF8830E03DB02B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6F22FC7E50F12F0AF1921346 /* libPods-Today.a */,
+				7FEB7661DF03D926634F72D7 /* Pods_Today.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +247,7 @@
 				A260F04A1AD866BA00C18EB6 /* Resources */,
 				A260F08C1AD879B600C18EB6 /* Copy Frameworks */,
 				F63E3D0A9BF580D2FDA8E2BE /* Copy Pods Resources */,
+				8E30C42ED65C0727325FE2D6 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -377,6 +387,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		8E30C42ED65C0727325FE2D6 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Today/Pods-Today-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F63E3D0A9BF580D2FDA8E2BE /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -399,7 +424,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2FEBD9D1ADC58FB009EA785 /* SectionHeaderView.swift in Sources */,
 				A2FEBD241ADB17C6009EA785 /* WeatherService.swift in Sources */,
+				A2FEBD981ADC3712009EA785 /* RLMSupport.swift in Sources */,
 				A260F0961ADAC36100C18EB6 /* LocationService.swift in Sources */,
 				A260F0541AD866BA00C18EB6 /* MainViewController.swift in Sources */,
 				A260F0791AD8769400C18EB6 /* BlurbsManager.swift in Sources */,
@@ -407,6 +434,7 @@
 				A260F0721AD86A5600C18EB6 /* CurrentWeather.swift in Sources */,
 				A260F0521AD866BA00C18EB6 /* AppDelegate.swift in Sources */,
 				A260F0771AD875EB00C18EB6 /* BlurbTableCell.swift in Sources */,
+				A2FEBD671ADB4B3C009EA785 /* BlurbAddViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,7 +564,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/**";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -550,7 +578,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/**";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};

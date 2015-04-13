@@ -1,21 +1,12 @@
 PODS:
-  - CocoaLumberjack (1.9.2):
-    - CocoaLumberjack/Extensions (= 1.9.2)
-  - CocoaLumberjack/Core (1.9.2)
-  - CocoaLumberjack/Extensions (1.9.2):
-    - CocoaLumberjack/Core
-  - YapDatabase (2.6.1):
-    - YapDatabase/standard (= 2.6.1)
-  - YapDatabase/common (2.6.1):
-    - CocoaLumberjack (~> 1)
-  - YapDatabase/standard (2.6.1):
-    - YapDatabase/common
+  - Realm (0.91.1):
+    - Realm/Headers (= 0.91.1)
+  - Realm/Headers (0.91.1)
 
 DEPENDENCIES:
-  - YapDatabase (~> 2.4)
+  - Realm
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
-  YapDatabase: 13566c87dc9226a0f15d755edba08e8ad94cac9f
+  Realm: b9c1fd9defa26aa7276ce938a8df52ec81f24528
 
 COCOAPODS: 0.36.3
