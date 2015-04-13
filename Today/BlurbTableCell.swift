@@ -36,10 +36,12 @@ class BlurbTableCell: UITableViewCell {
         summaryLabel.textColor = UIColor.blackColor()
         summaryLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 24)
         summaryLabel.textAlignment = NSTextAlignment.Left
+        summaryLabel.layer.shadowColor = UIColor.blackColor().CGColor
+        summaryLabel.layer.shadowOffset = CGSizeMake(1, 1)
+        summaryLabel.layer.shadowOpacity = 0.1
+        summaryLabel.layer.shadowRadius = 0.5
+        
         self.contentView.addSubview(summaryLabel)
-        
-        
-       
         
         lineView.backgroundColor = UIColor.blackColor()
         self.contentView.addSubview(lineView)
@@ -101,7 +103,7 @@ class BlurbTableCell: UITableViewCell {
         
         timeLabel.attributedText =
             NSAttributedString(
-                string: blurb.date,
+                string: blurb.time,
                 attributes:
                 [
                     NSParagraphStyleAttributeName: paragraphStyle,
