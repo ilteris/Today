@@ -11,7 +11,7 @@ import Snap
 import Realm
 
 
-class MainViewController: UIViewController, UITableViewDataSource, CurrentLocation, ForecastIO {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CurrentLocation, ForecastIO {
 
     
     var objects = [BlurbDate]()
@@ -99,6 +99,7 @@ class MainViewController: UIViewController, UITableViewDataSource, CurrentLocati
         superview.addSubview(whatHappenedText)
         
         tableView.dataSource = self
+        tableView.delegate = self
         
         tableView.rowHeight = 80
         tableView.snp_makeConstraints { make in
