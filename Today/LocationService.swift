@@ -100,7 +100,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
     
 
     func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!){
-        var latitude:String = "\(newLocation.coordinate.longitude)"
+        var latitude:String = "\(newLocation.coordinate.latitude)"
         var longitude:String = "\(newLocation.coordinate.longitude)"
         coreLocationManager?.stopUpdatingLocation()
        delegate?.updatedLocation(latitude, lon: longitude)
