@@ -7,18 +7,20 @@
 //
 
 import Foundation
-class Blurb {
-    var date:String
-    var summary:String
-    var temperature:Double
-    var weatherIcon:String
-    var location:String
+import Realm
+
+class Blurb: RLMObject {
+    dynamic var time = ""
+    dynamic var summary = ""
+    dynamic var temperature = ""
+    dynamic var weatherIcon = ""
     
-    init(date:String, summary:String, temperature:Double, weatherIcon:String, location:String) {
-        self.date = date
-        self.summary = summary
-        self.temperature = temperature
-        self.weatherIcon = weatherIcon
-        self.location = location
-    }
+    
+}
+
+// Person model
+class BlurbDate: RLMObject {
+    dynamic var name = "" //Monday, Tuesday etc.
+    dynamic var date = "" //23/4/15
+    dynamic var blurbs = RLMArray(objectClassName: Blurb.className())
 }
