@@ -84,8 +84,6 @@ class MainViewController: UIViewController, UITableViewDataSource, CurrentLocati
      //   superview.addSubview(UIImageView(image: UIImage(named: "Reference")))
 
         
-
-        
         
         superview.addSubview(tableView)
         superview.addSubview(bottomView)

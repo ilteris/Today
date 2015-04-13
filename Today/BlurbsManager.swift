@@ -11,7 +11,8 @@ import Foundation
 class BlurbsManager: NSObject {
     
     var blurbs = [Blurb]()
-    
+    var connection: YapDatabaseConnection?
+
     
     class var sharedInstance: BlurbsManager {
         struct Static {
@@ -22,6 +23,12 @@ class BlurbsManager: NSObject {
     
     
     override init() {
+        
+        var paths = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
+        var baseDir = paths.count > 0 ? paths[0] as! String : NSTemporaryDirectory() as String
+        var database = YapDatabase(path: baseDir.stringByAppendingPathComponent("YapDatabase.sqlite"))
+        connection = database.newConnection()
+        
         
         blurbs =  [
             Blurb(date: "3:20pm", summary: "Had a bad dream.", temperature: 12.3, weatherIcon: "cloudy", location: "New York"),

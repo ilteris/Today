@@ -21,6 +21,7 @@
 		A260F0941ADAC2F900C18EB6 /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = A260F0931ADAC2F900C18EB6 /* Location.gpx */; };
 		A260F0961ADAC36100C18EB6 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0951ADAC36100C18EB6 /* LocationService.swift */; };
 		A2FEBD241ADB17C6009EA785 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD231ADB17C6009EA785 /* WeatherService.swift */; };
+		C3E2B354A25DC74547A31C6B /* libPods-Today.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F22FC7E50F12F0AF1921346 /* libPods-Today.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6F22FC7E50F12F0AF1921346 /* libPods-Today.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Today.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CBE4C27395F8D742AD2CF45 /* Pods-Today.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Today.release.xcconfig"; path = "Pods/Target Support Files/Pods-Today/Pods-Today.release.xcconfig"; sourceTree = "<group>"; };
 		A260F04C1AD866BA00C18EB6 /* Today.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Today.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A260F0501AD866BA00C18EB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A260F0511AD866BA00C18EB6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +105,8 @@
 		A260F0951ADAC36100C18EB6 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		A2FEBD221ADAE7EC009EA785 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
 		A2FEBD231ADB17C6009EA785 /* WeatherService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		A2FEBD2B1ADB39E5009EA785 /* Today-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Today-Bridging-Header.h"; sourceTree = "<group>"; };
+		D18774D0A94FDE1279102236 /* Pods-Today.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Today.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Today/Pods-Today.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +115,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A260F0921ADAC21800C18EB6 /* CoreLocation.framework in Frameworks */,
+				C3E2B354A25DC74547A31C6B /* libPods-Today.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +129,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C33FCF57FD5EC0D4D799556 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D18774D0A94FDE1279102236 /* Pods-Today.debug.xcconfig */,
+				9CBE4C27395F8D742AD2CF45 /* Pods-Today.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A260F0431AD866BA00C18EB6 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +146,8 @@
 				A260F04E1AD866BA00C18EB6 /* Today */,
 				A260F0641AD866BA00C18EB6 /* TodayTests */,
 				A260F04D1AD866BA00C18EB6 /* Products */,
+				4C33FCF57FD5EC0D4D799556 /* Pods */,
+				AA23ED788DF8830E03DB02B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +175,7 @@
 				A260F0581AD866BA00C18EB6 /* Images.xcassets */,
 				A260F05A1AD866BA00C18EB6 /* LaunchScreen.xib */,
 				A260F04F1AD866BA00C18EB6 /* Supporting Files */,
+				A2FEBD2B1ADB39E5009EA785 /* Today-Bridging-Header.h */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -199,6 +217,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AA23ED788DF8830E03DB02B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F22FC7E50F12F0AF1921346 /* libPods-Today.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -206,10 +232,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A260F06B1AD866BA00C18EB6 /* Build configuration list for PBXNativeTarget "Today" */;
 			buildPhases = (
+				491CC10B69AB8309F0B473DB /* Check Pods Manifest.lock */,
 				A260F0481AD866BA00C18EB6 /* Sources */,
 				A260F0491AD866BA00C18EB6 /* Frameworks */,
 				A260F04A1AD866BA00C18EB6 /* Resources */,
 				A260F08C1AD879B600C18EB6 /* Copy Frameworks */,
+				F63E3D0A9BF580D2FDA8E2BE /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -332,6 +360,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		491CC10B69AB8309F0B473DB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F63E3D0A9BF580D2FDA8E2BE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Today/Pods-Today-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A260F0481AD866BA00C18EB6 /* Sources */ = {
@@ -467,21 +528,29 @@
 		};
 		A260F06C1AD866BA00C18EB6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D18774D0A94FDE1279102236 /* Pods-Today.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Today/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/**";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/**";
 			};
 			name = Debug;
 		};
 		A260F06D1AD866BA00C18EB6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CBE4C27395F8D742AD2CF45 /* Pods-Today.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Today/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/**";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/**";
 			};
 			name = Release;
 		};

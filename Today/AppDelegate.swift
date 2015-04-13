@@ -12,7 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        
         var viewController : MainViewController  = MainViewController()
         var navController: UINavigationController = UINavigationController (rootViewController: viewController)
         navController.navigationBarHidden = true
