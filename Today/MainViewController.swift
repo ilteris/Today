@@ -8,18 +8,25 @@
 
 import UIKit
 import Snap
+import Realm
 
 
 class MainViewController: UIViewController, UITableViewDataSource, CurrentLocation, ForecastIO {
 
+    
+    var objects = [BlurbDate]()
+
+    var notificationToken: RLMNotificationToken?
+
+    
     let kCellId = "blurbCell"
     
-
     let tableView = UITableView(frame: CGRectZero, style: .Plain)
 
     let bottomView:UIImageView =   {
         let view = UIImageView(image: UIImage(named: "bottom_bg"))
         view.backgroundColor = UIColor.clearColor()
+        view.userInteractionEnabled = true
         return view
     }()
     
@@ -132,27 +139,48 @@ class MainViewController: UIViewController, UITableViewDataSource, CurrentLocati
         
         
         
-        
-        
-        
+    }
+    
+     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let day = objects[section]
+        return day["name"] as? String
+    }
+    
+     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let day = objects[section]
+        let view = SectionHeaderView()
+        view.titleLabel.text = (day["name"] as! String).uppercaseString
+        return view
+    }
+
+     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 45
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return BlurbsManager.sharedInstance.blurbs.count
+     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return objects.count
     }
     
+     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let day = objects[section]
+        let items = day["blurbs"] as! RLMArray
+        return Int(items.count)
+    }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let blurb = BlurbsManager.sharedInstance.blurbs[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("blurbCell") as! BlurbTableCell
-        cell.backgroundColor = UIColor.clearColor()
 
-        cell.setBlurbSummary(blurb)
-
+     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("blurbCell", forIndexPath: indexPath)as! BlurbTableCell
+        let day = objects[indexPath.section]
+        let items = day["blurbs"] as! RLMArray
+        let int = UInt(indexPath.row)
+        let item = items[int] as! Blurb
+        
+        cell.summaryLabel.text = item["summary"] as? String
+        cell.timeLabel.text = item["time"] as? String
+        
         return cell
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,22 +193,31 @@ class MainViewController: UIViewController, UITableViewDataSource, CurrentLocati
         tableView.backgroundColor = UIColor.clearColor()
         
 
-        //set the delegate here.
-       
+        // add the tap gesture recognizer
+        let tap = UITapGestureRecognizer(target: self, action: Selector("didTap"))
+        bottomView.addGestureRecognizer(tap)
 
         
         
-        for familyName in UIFont.familyNames() {
-            if let fn = familyName as? String {
-                for font in UIFont.fontNamesForFamilyName(fn) {
-                    println("font: \(font)")
-                }
-            }
+        notificationToken = RLMRealm.defaultRealm().addNotificationBlock { note, realm in
+            self.tableView.reloadData()
         }
+        
+        objects = BlurbDate.allObjects().toArray(BlurbDate.self)
+        // let sortedObjects = unsortedObjects.sortedResultsUsingProperty("date", ascending: true)
+        // objects.append(sortedObjects)
+        
+        println(objects)
+
         
         
         
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func didTap() {
+        loadAddBlurbView()
+
     }
     
     
@@ -195,9 +232,10 @@ class MainViewController: UIViewController, UITableViewDataSource, CurrentLocati
     }
     
     /// WeatherService delegate methods
-    func currentWeatherData(weather:CurrentWeather) {
-        weatherView.text = String(weather.temperature) + "°" + " " + weather.summary
-        self.iconView.image = weather.icon!
+    func currentWeatherData(currentWeather:CurrentWeather) {
+        weatherView.text = String(currentWeather.temperature) + "°" + " " + currentWeather.summary
+        self.iconView.image =  UIImage(named: currentWeather.iconString)
+        BlurbsManager.sharedInstance.currentWeather = (temperature:String(currentWeather.temperature), summary:currentWeather.summary, iconString:currentWeather.iconString)
     }
     
     func failedGettingCurrentData() {
@@ -205,12 +243,36 @@ class MainViewController: UIViewController, UITableViewDataSource, CurrentLocati
     }
     
     
+    func loadAddBlurbView() {
+        let vc = BlurbAddViewController()
+        navigationController?.pushViewController(vc, animated: true )
+
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+ 
     
 }
+
+
+extension RLMResults {
+    
+    func toArray<T>(ofType: T.Type) -> [T] {
+        var array = [T]()
+        for result in self {
+            if let result = result as? T {
+                array.append(result)
+            }
+        }
+        return array
+    }
+}
+
+
+
+
 
