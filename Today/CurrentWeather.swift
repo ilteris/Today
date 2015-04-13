@@ -16,7 +16,7 @@ struct CurrentWeather {
     var humidity: Double
     var precipProbability: Double
     var summary: String
-    var icon: UIImage?
+    var iconString: String
     
     init(weatherDictionary: NSDictionary) {
         let currentWeather = weatherDictionary["currently"] as! NSDictionary
@@ -26,8 +26,8 @@ struct CurrentWeather {
         precipProbability = currentWeather["precipProbability"] as! Double
         summary = currentWeather["summary"] as! String
         
-        let iconString = currentWeather["icon"] as! String
-        icon = weatherIconFromString(iconString)
+        iconString = currentWeather["icon"] as! String
+       // iconString = UIImage(named: weatherIconFromString(iconString))
         
         let currentTimeIntValue = currentWeather["time"] as! Int
         currentTime = dateStringFromUnixtime(currentTimeIntValue)
@@ -43,7 +43,7 @@ struct CurrentWeather {
         return dateFormatter.stringFromDate(weatherData)
     }
     
-    func weatherIconFromString(stringIcon: String) -> UIImage {
+    func weatherIconFromString(stringIcon: String) -> String {
         var imageName: String
         
         switch stringIcon {
@@ -71,8 +71,8 @@ struct CurrentWeather {
             imageName = "default"
         }
         
-        var iconImage = UIImage(named: imageName)
-        return iconImage!
+       // var iconImage = UIImage(named: imageName)
+        return imageName
         
     }
 }
