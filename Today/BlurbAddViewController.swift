@@ -10,6 +10,11 @@ import UIKit
 import Realm
 class BlurbAddViewController: UIViewController {
 
+    
+    let transition = InteractiveAnimator()
+
+    
+    
     let topView:UIImageView =   {
         let view = UIImageView(image: UIImage(named: "add_viewcontroller_top_bg"))
         view.backgroundColor = UIColor.clearColor()
@@ -161,9 +166,8 @@ class BlurbAddViewController: UIViewController {
         
     }
     
-    func okBtnTapped(sender: UIButton!) {
-        addBlurbTextView.resignFirstResponder()
-        
+    
+    func writeBlurp() {
         //get time
         //temp
         //summary
@@ -178,7 +182,7 @@ class BlurbAddViewController: UIViewController {
         let date = NSDate()
         let dateFormatter = NSDateFormatter()
         let timeFormatter = NSDateFormatter()
-
+        
         dateFormatter.dateStyle = .ShortStyle
         timeFormatter.timeStyle = .ShortStyle
         timeFormatter.stringFromDate(date)
@@ -209,7 +213,7 @@ class BlurbAddViewController: UIViewController {
         if resultDate.count < 1 {
             
             var newData = BlurbDate()
-
+            
             let dateName = NSDateFormatter()
             dateName.locale = NSLocale(localeIdentifier: "en_US")
             dateName.dateFormat = "EEEE"
@@ -219,7 +223,7 @@ class BlurbAddViewController: UIViewController {
             realm.beginWriteTransaction()
             realm.addObject(newData)
             realm.commitWriteTransaction()
-
+            
         }
         else
         {
@@ -231,9 +235,16 @@ class BlurbAddViewController: UIViewController {
             
         }
         
-            if let navController = self.navigationController {
-                navController.popViewControllerAnimated(true)
-           
+        
+    }
+    func okBtnTapped(sender: UIButton!) {
+        
+        addBlurbTextView.resignFirstResponder()
+        writeBlurp()
+
+        if let navController = self.navigationController {
+            navController.popViewControllerAnimated(true)
+            
         }
         
         
@@ -247,14 +258,42 @@ class BlurbAddViewController: UIViewController {
         self.iconView.image =  UIImage(named: currentWeather.iconString)
         
         addBlurbTextView.becomeFirstResponder()
+        
+        let pan = UIPanGestureRecognizer(target: self, action: Selector("didPan:"))
+        view.addGestureRecognizer(pan)
+        
+        
 
     }
 
+    
+    func didPan(recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .Began:
+            transition.interactive = true
+            addBlurbTextView.resignFirstResponder()
+            writeBlurp()
+            
+//            if let navController = self.navigationController {
+//                navController.popViewControllerAnimated(true)
+//                
+//            }
+
+        default:
+            transition.handleBlurbPan(recognizer)
+        }
+    }
+
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
 
     /*
     // MARK: - Navigation

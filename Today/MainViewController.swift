@@ -15,6 +15,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     
     var objects = [BlurbDate]()
+   
+    let transition = InteractiveAnimator()
 
     var notificationToken: RLMNotificationToken?
 
@@ -187,7 +189,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         locationService.delegate = self
-
+         navigationController?.delegate = self
         
         tableView.registerClass(BlurbTableCell.classForCoder(), forCellReuseIdentifier: kCellId)
         tableView.separatorStyle = .None
@@ -204,22 +206,32 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.tableView.reloadData()
         }
         
+        
         objects = BlurbDate.allObjects().toArray(BlurbDate.self)
-        // let sortedObjects = unsortedObjects.sortedResultsUsingProperty("date", ascending: true)
-        // objects.append(sortedObjects)
         
-        println(objects)
+        let pan = UIPanGestureRecognizer(target: self, action: Selector("didPan:"))
+        view.addGestureRecognizer(pan)
 
-        
-        
-        
-        // Do any additional setup after loading the view, typically from a nib.
+    
     }
     
     func didTap() {
         loadAddBlurbView()
 
     }
+    
+    func didPan(recognizer: UIPanGestureRecognizer) {
+        switch recognizer.state {
+        case .Began:
+            transition.interactive = true
+            let vc = BlurbAddViewController()
+            navigationController?.pushViewController(vc, animated: true )
+        default:
+            transition.handlePan(recognizer)
+        }
+    }
+
+    
     
     
     /// LocationService delegate method
@@ -258,6 +270,24 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
  
     
 }
+
+
+extension MainViewController: UINavigationControllerDelegate {
+    
+    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.operation = operation
+        return transition
+    }
+    
+    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        
+        if !transition.interactive {
+            return nil
+        }
+        return transition
+    }
+}
+
 
 
 extension RLMResults {
