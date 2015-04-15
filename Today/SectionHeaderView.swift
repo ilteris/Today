@@ -14,7 +14,7 @@ class SectionHeaderView: UIView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-UltraLight", size: 15)
+        label.font = UIFont(name: "AvenirNext-Regular", size: 16)
         label.textColor = UIColor.blackColor()
         return label
         }()
@@ -34,6 +34,8 @@ class SectionHeaderView: UIView {
         titleLabel.snp_makeConstraints { make in
             make.centerY.equalTo(self.snp_centerY)
             make.left.equalTo(self.snp_left).offset(10)
+            make.top.equalTo(self.snp_top).offset(20)
+
         }
         
         
