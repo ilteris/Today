@@ -18,6 +18,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
    
     let transition = InteractiveAnimator()
 
+    
     var notificationToken: RLMNotificationToken?
 
     
@@ -25,8 +26,36 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let tableView = UITableView(frame: CGRectZero, style: .Plain)
 
+    let scrollView = UIScrollView(frame: UIScreen.mainScreen().bounds)
+    
+    let locationService = LocationService()
+    let weatherService = WeatherService()
+    
+
+
+    lazy var whatHappenedText: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AvenirNext-UltraLight", size: 25)
+        label.textColor = UIColor.whiteColor()
+        label.textAlignment = .Center
+        label.text = "WHAT HAPPENED TODAY?"
+        label.numberOfLines = 2
+        
+        label.layer.shadowColor = UIColor.blackColor().CGColor
+        label.layer.shadowOffset = CGSizeMake(1, 1)
+        label.layer.shadowOpacity = 0.4;
+        label.layer.shadowRadius = 2;
+        
+        
+        return label
+        }()
+    
+
+    
+    
+    
     let bottomView:UIImageView =   {
-        let view = UIImageView(image: UIImage(named: "bottom_bg"))
+        let view = UIImageView(image: UIImage(named: "bg"))
         view.backgroundColor = UIColor.clearColor()
         view.userInteractionEnabled = true
         return view
@@ -46,27 +75,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return view
         }()
     
-    lazy var whatHappenedText: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-UltraLight", size: 35)
-        label.textColor = UIColor.whiteColor()
-        label.textAlignment = .Center
-        label.text = "WHAT HAPPENED TODAY?"
-        label.numberOfLines = 2
+    
 
-        label.layer.shadowColor = UIColor.blackColor().CGColor
-        label.layer.shadowOffset = CGSizeMake(1, 1)
-        label.layer.shadowOpacity = 0.4;
-        label.layer.shadowRadius = 2;
-   
-        
-        return label
-        }()
+
     
+    lazy var lineView:UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.blackColor()
+        return view
     
+    }()
     
-    let locationService = LocationService()
-    let weatherService = WeatherService()
     
     
     convenience init()
@@ -93,30 +112,41 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
      //   superview.addSubview(UIImageView(image: UIImage(named: "Reference")))
 
         
-        
-        superview.addSubview(tableView)
-        superview.addSubview(bottomView)
-        superview.addSubview(weatherView)
-        superview.addSubview(iconView)
-        superview.addSubview(whatHappenedText)
+       
+        superview.addSubview(lineView)
+
+        superview.addSubview(scrollView)
+
+        scrollView.addSubview(tableView)
+        scrollView.addSubview(bottomView)
+        bottomView.addSubview(weatherView)
+        bottomView.addSubview(iconView)
+        bottomView.addSubview(whatHappenedText)
         
         tableView.dataSource = self
         tableView.delegate = self
-        
         tableView.rowHeight = 80
-        tableView.snp_makeConstraints { make in
+        
+        scrollView.contentSize = CGSize(width:UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
+        scrollView.alwaysBounceVertical = true
+
+        
+        scrollView.snp_makeConstraints { make in
             make.width.equalTo(superview.snp_width)
-            make.bottom.equalTo(superview.snp_centerY)
+            make.height.equalTo(superview.snp_height)
             make.top.equalTo(0)
             make.left.equalTo(0)
         }
         
+        
+        
+        
         bottomView.snp_makeConstraints { make in
             make.width.equalTo(superview.snp_width)
-            make.top.equalTo(self.tableView.snp_bottom).offset(-8)
-            make.left.equalTo(0)
+            make.bottom.equalTo(superview.snp_bottom).offset(11)
+            
+
         }
-        
         
         
         iconView.snp_makeConstraints { make in
@@ -124,7 +154,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             make.left.equalTo(10)
         }
 
-        
+        tableView.snp_makeConstraints { make in
+            make.width.equalTo(self.view.snp_width)
+            //make.bottom.equalTo(superview.snp_centerY)
+            //make.height.equalTo(425)
+            make.bottom.equalTo(self.bottomView.snp_top).offset(11)
+            make.top.equalTo(0)
+            make.left.equalTo(0)
+        }
+
         
         
         weatherView.snp_makeConstraints { make in
@@ -135,12 +173,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         whatHappenedText.snp_makeConstraints { make in
             make.width.equalTo(self.view.snp_width)
-            make.centerY.equalTo(self.bottomView.snp_centerY)
             make.centerX.equalTo(self.bottomView.snp_centerX)
+            make.top.equalTo(70)
             
         }
         
-        
+        lineView.snp_makeConstraints { make in
+            make.width.equalTo(0.5)
+            make.height.equalTo(self.tableView.snp_height)
+            make.top.equalTo(0)
+            make.left.equalTo(80)
+            
+        }
         
     }
     
@@ -157,7 +201,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
      func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 45
+        return 60
     }
     
     
@@ -189,7 +233,8 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         
         locationService.delegate = self
-         navigationController?.delegate = self
+        navigationController?.delegate = self
+
         
         tableView.registerClass(BlurbTableCell.classForCoder(), forCellReuseIdentifier: kCellId)
         tableView.separatorStyle = .None
@@ -200,20 +245,23 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let tap = UITapGestureRecognizer(target: self, action: Selector("didTap"))
         bottomView.addGestureRecognizer(tap)
 
-        
-        
+        objects = BlurbDate.allObjects().toArray(BlurbDate.self)
+
+
         notificationToken = RLMRealm.defaultRealm().addNotificationBlock { note, realm in
+            self.objects = BlurbDate.allObjects().toArray(BlurbDate.self)
             self.tableView.reloadData()
         }
         
         
-        objects = BlurbDate.allObjects().toArray(BlurbDate.self)
-        
         let pan = UIPanGestureRecognizer(target: self, action: Selector("didPan:"))
-        view.addGestureRecognizer(pan)
+        scrollView.panGestureRecognizer.requireGestureRecognizerToFail(pan)
+        scrollView.addGestureRecognizer(pan)
 
     
     }
+    
+    
     
     func didTap() {
         loadAddBlurbView()
@@ -225,14 +273,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .Began:
             transition.interactive = true
             let vc = BlurbAddViewController()
+            println("began")
             navigationController?.pushViewController(vc, animated: true )
         default:
+             println("default")
             transition.handlePan(recognizer)
+            
         }
     }
 
-    
-    
+
     
     /// LocationService delegate method
     func updatedLocation(lat:String, lon:String) {
@@ -268,6 +318,11 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
  
+  
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.Default
+    }
     
 }
 
@@ -286,6 +341,9 @@ extension MainViewController: UINavigationControllerDelegate {
         }
         return transition
     }
+    
+
+    
 }
 
 
