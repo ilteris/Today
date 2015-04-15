@@ -67,6 +67,8 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         switch CLLocationManager.authorizationStatus() {
     case .AuthorizedWhenInUse:
         println("Authorized when in use")
+        manager.startUpdatingLocation()
+
     case .Denied:
         println("Denied")
     case .NotDetermined:
@@ -84,9 +86,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         if let manager = coreLocationManager {
             println("Successfully created the location manager")
                 manager.delegate = self
-            
-            
-            if startImmediately {
+                if startImmediately {
                 manager.startUpdatingLocation()
             }
         
