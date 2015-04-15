@@ -27,14 +27,14 @@ class BlurbTableCell: UITableViewCell {
 
         timeLabel.backgroundColor = UIColor.clearColor()
         timeLabel.textColor = UIColor.blackColor()
-        timeLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 13)
-        timeLabel.textColor = UIColor(red: 0.631, green: 0.651, blue: 0.678, alpha: 1)
+        timeLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 12)
+        timeLabel.textColor = UIColor(red: 0.331, green: 0.351, blue: 0.378, alpha: 1)
         timeLabel.textAlignment = .Right
         self.contentView.addSubview(timeLabel)
         
         summaryLabel.backgroundColor = UIColor.clearColor()
         summaryLabel.textColor = UIColor.blackColor()
-        summaryLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 24)
+        summaryLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 23)
         summaryLabel.textAlignment = NSTextAlignment.Left
         summaryLabel.layer.shadowColor = UIColor.blackColor().CGColor
         summaryLabel.layer.shadowOffset = CGSizeMake(1, 1)
@@ -47,7 +47,7 @@ class BlurbTableCell: UITableViewCell {
         self.contentView.addSubview(lineView)
         
         circleView.backgroundColor = UIColor.whiteColor()
-        circleView.layer.borderWidth = 2
+        circleView.layer.borderWidth = 3
         circleView.layer.cornerRadius = 10
         circleView.layer.borderColor = UIColor(red: 0.592, green: 0.808, blue: 0.771, alpha: 1.000).CGColor
 
@@ -63,7 +63,8 @@ class BlurbTableCell: UITableViewCell {
         
         timeLabel.snp_makeConstraints { make in
             make.centerY.equalTo(self.contentView.snp_centerY)
-            make.width.equalTo(80)
+            make.width.equalTo(55)
+            make.left.equalTo(5)
             
         }
        
@@ -80,8 +81,9 @@ class BlurbTableCell: UITableViewCell {
         
         summaryLabel.snp_makeConstraints { make in
             make.centerY.equalTo(self.contentView.snp_centerY)
-            make.left.equalTo(self.circleView.snp_rightMargin).offset(30)
+            make.left.equalTo(self.circleView.snp_right).offset(10)
         }
+        
         
         lineView.snp_makeConstraints { make in
             make.centerX.equalTo(self.circleView.snp_centerX)
