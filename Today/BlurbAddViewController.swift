@@ -16,7 +16,7 @@ class BlurbAddViewController: UIViewController {
     
     
     let topView:UIImageView =   {
-        let view = UIImageView(image: UIImage(named: "add_viewcontroller_top_bg"))
+        let view = UIImageView(image: UIImage(named: "bg"))
         view.backgroundColor = UIColor.clearColor()
         return view
         }()
@@ -28,7 +28,7 @@ class BlurbAddViewController: UIViewController {
     
     lazy var whatHappenedText: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-UltraLight", size: 28)
+        label.font = UIFont(name: "AvenirNext-UltraLight", size: 25)
         label.textColor = UIColor.whiteColor()
         label.textAlignment = .Center
         label.text = "WHAT HAPPENED TODAY?"
@@ -65,7 +65,7 @@ class BlurbAddViewController: UIViewController {
         textView.font = UIFont(name: "AvenirNext-UltraLight", size: 35)
         textView.textColor = UIColor.blackColor()
         textView.textAlignment = .Center
-        textView.text = "Read about Swift"
+        textView.text = ""
         textView.backgroundColor = UIColor.clearColor()
 
         
@@ -104,9 +104,9 @@ class BlurbAddViewController: UIViewController {
         let superview = view
                 
         superview.addSubview(topView)
-        superview.addSubview(iconView)
-        superview.addSubview(weatherView)
-        superview.addSubview(whatHappenedText)
+        topView.addSubview(iconView)
+        topView.addSubview(weatherView)
+        topView.addSubview(whatHappenedText)
         superview.addSubview(addBlurbTextView)
         superview.addSubview(okBtn)
         
@@ -117,7 +117,7 @@ class BlurbAddViewController: UIViewController {
         
         topView.snp_makeConstraints { make in
             make.width.equalTo(superview.snp_width)
-            make.top.equalTo(0)
+            make.top.equalTo(0).offset(-11)
             make.left.equalTo(0)
         }
         
@@ -145,8 +145,8 @@ class BlurbAddViewController: UIViewController {
         }
         
         addBlurbTextView.snp_makeConstraints { make in
-            make.width.equalTo(self.view.snp_width).offset(-50)
-            make.height.equalTo(100)
+            make.width.equalTo(self.view.snp_width).offset(-20)
+            make.height.equalTo(200)
             make.centerX.equalTo(self.view.snp_centerX)
             make.centerY.equalTo(self.view.snp_centerY).offset(-40)
 
@@ -239,9 +239,14 @@ class BlurbAddViewController: UIViewController {
     }
     func okBtnTapped(sender: UIButton!) {
         
+        if addBlurbTextView.text != "" {
+            
+            writeBlurp()
+            
+            
+        }
+        transition.interactive = true
         addBlurbTextView.resignFirstResponder()
-        writeBlurp()
-
         if let navController = self.navigationController {
             navController.popViewControllerAnimated(true)
             
@@ -257,7 +262,6 @@ class BlurbAddViewController: UIViewController {
         weatherView.text = String(currentWeather.temperature) + "°" + " " + currentWeather.summary
         self.iconView.image =  UIImage(named: currentWeather.iconString)
         
-        addBlurbTextView.becomeFirstResponder()
         
         let pan = UIPanGestureRecognizer(target: self, action: Selector("didPan:"))
         view.addGestureRecognizer(pan)
@@ -270,14 +274,21 @@ class BlurbAddViewController: UIViewController {
     func didPan(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .Began:
+            
+            if addBlurbTextView.text != "" {
+               
+                writeBlurp()
+                
+               
+            }
             transition.interactive = true
             addBlurbTextView.resignFirstResponder()
-            writeBlurp()
+            if let navController = self.navigationController {
+                navController.popViewControllerAnimated(true)
+                
+            }
+
             
-//            if let navController = self.navigationController {
-//                navController.popViewControllerAnimated(true)
-//                
-//            }
 
         default:
             transition.handleBlurbPan(recognizer)
