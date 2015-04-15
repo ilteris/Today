@@ -25,7 +25,6 @@
 		A2FEBD981ADC3712009EA785 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD971ADC3712009EA785 /* RLMSupport.swift */; };
 		A2FEBD9D1ADC58FB009EA785 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD9C1ADC58FB009EA785 /* SectionHeaderView.swift */; };
 		A2FEBD9F1ADC73B1009EA785 /* InteractiveAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD9E1ADC73B1009EA785 /* InteractiveAnimator.swift */; };
-		A2FEBDA11ADC85F0009EA785 /* BlurbTransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBDA01ADC85F0009EA785 /* BlurbTransitionManager.swift */; };
 		D59AB225B0AD272F30D3B359 /* Pods_Today.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEB7661DF03D926634F72D7 /* Pods_Today.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -115,7 +114,6 @@
 		A2FEBD971ADC3712009EA785 /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
 		A2FEBD9C1ADC58FB009EA785 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		A2FEBD9E1ADC73B1009EA785 /* InteractiveAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveAnimator.swift; sourceTree = "<group>"; };
-		A2FEBDA01ADC85F0009EA785 /* BlurbTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurbTransitionManager.swift; sourceTree = "<group>"; };
 		D18774D0A94FDE1279102236 /* Pods-Today.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Today.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Today/Pods-Today.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,7 +175,6 @@
 				A2FEBD221ADAE7EC009EA785 /* Avenir Next.ttc */,
 				A260F0781AD8769400C18EB6 /* BlurbsManager.swift */,
 				A2FEBD9E1ADC73B1009EA785 /* InteractiveAnimator.swift */,
-				A2FEBDA01ADC85F0009EA785 /* BlurbTransitionManager.swift */,
 				A260F0511AD866BA00C18EB6 /* AppDelegate.swift */,
 				A260F0711AD86A5600C18EB6 /* CurrentWeather.swift */,
 				A260F0731AD86C9600C18EB6 /* Blurb.swift */,
@@ -435,7 +432,6 @@
 				A2FEBD241ADB17C6009EA785 /* WeatherService.swift in Sources */,
 				A2FEBD981ADC3712009EA785 /* RLMSupport.swift in Sources */,
 				A260F0961ADAC36100C18EB6 /* LocationService.swift in Sources */,
-				A2FEBDA11ADC85F0009EA785 /* BlurbTransitionManager.swift in Sources */,
 				A260F0541AD866BA00C18EB6 /* MainViewController.swift in Sources */,
 				A260F0791AD8769400C18EB6 /* BlurbsManager.swift in Sources */,
 				A260F0741AD86C9600C18EB6 /* Blurb.swift in Sources */,

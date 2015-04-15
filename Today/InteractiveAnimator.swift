@@ -10,7 +10,7 @@ import UIKit
 
 class InteractiveAnimator: UIPercentDrivenInteractiveTransition, UIViewControllerAnimatedTransitioning {
     
-    let animationDuration = 0.5
+    let animationDuration = 1.0
     var operation: UINavigationControllerOperation = .Push
     
     weak var storedContext: UIViewControllerContextTransitioning?
@@ -33,34 +33,32 @@ class InteractiveAnimator: UIPercentDrivenInteractiveTransition, UIViewControlle
             let duration = self.transitionDuration(transitionContext)
             transitionContext.containerView().addSubview(toVC.view)
             transitionContext.containerView().addSubview(fromVC.view)
-            UIView.animateWithDuration(duration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                
-                    toVC.view.transform = CGAffineTransformIdentity
-                    self.offStageMenuControllerInteractive(fromVC)
-                   // self.onStageMenuControllerForBlurbAddViewController(toVC)
+            toVC.view.transform = CGAffineTransformTranslate(toVC.view.transform, 0, toVC.view.bounds.size.height-toVC.topView.bounds.size.height);
 
-
+            UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0,  options: nil, animations: {
+                        fromVC.view.transform = CGAffineTransformMakeTranslation(0, -toVC.view.bounds.size.height+toVC.topView.bounds.size.height-22)
+                        toVC.view.transform = CGAffineTransformMakeTranslation(0, 0)
                 },
                 completion:  { (finished: Bool) in
-                    
                     if(transitionContext.transitionWasCancelled()){
-                        
                         transitionContext.completeTransition(false)
-                        // bug: we have to manually add our 'to view' back http://openradar.appspot.com/radar?id=5320103646199808
-                     //   UIApplication.sharedApplication().keyWindow!.addSubview(screens.from.view)
-                        
+
                     }
                     else {
                         
                         transitionContext.completeTransition(true)
-                        // bug: we have to manually add our 'to view' back http://openradar.appspot.com/radar?id=5320103646199808
-                    //    UIApplication.sharedApplication().keyWindow!.addSubview(screens.to.view)
+                        fromVC.view.transform = CGAffineTransformIdentity
+                        toVC.view.transform = CGAffineTransformIdentity
+                        toVC.addBlurbTextView.becomeFirstResponder()
+
                         
                     }
                     
                     
                 }
             )
+            
+            
             
         } else if operation == .Pop {
             // create a tuple of our screens
@@ -70,31 +68,27 @@ class InteractiveAnimator: UIPercentDrivenInteractiveTransition, UIViewControlle
             let duration = self.transitionDuration(transitionContext)
             transitionContext.containerView().addSubview(toVC.view)
             transitionContext.containerView().addSubview(fromVC.view)
-            UIView.animateWithDuration(duration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-                self.onStageMenuController(toVC) // onstage items: slide in
-                self.offStageMenuControllerInteractiveForAddBlurbViewController(fromVC)
-             //   toVC.view.transform = CGAffineTransformIdentity
-               // self.offStageMenuControllerInteractive(fromVC)
-                
+            UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0,  options: nil, animations: {
+                fromVC.view.transform = CGAffineTransformMakeTranslation(0, toVC.view.bounds.size.height-toVC.bottomView.bounds.size.height+22)
+
+              // self.offStageMenuControllerInteractiveForAddBlurbViewController(fromVC)
+
                 },
                 completion:  { (finished: Bool) in
-                    
-                    if(transitionContext.transitionWasCancelled()){
-                        
+                    if(transitionContext.transitionWasCancelled()) {
                         transitionContext.completeTransition(false)
-                        // bug: we have to manually add our 'to view' back http://openradar.appspot.com/radar?id=5320103646199808
-                        //   UIApplication.sharedApplication().keyWindow!.addSubview(screens.from.view)
-                        
                     }
                     else {
-                        
                         transitionContext.completeTransition(true)
-                        // bug: we have to manually add our 'to view' back http://openradar.appspot.com/radar?id=5320103646199808
-                        //    UIApplication.sharedApplication().keyWindow!.addSubview(screens.to.view)
+                        fromVC.view.transform = CGAffineTransformIdentity
+                        if toVC.tableView.contentSize.height > toVC.tableView.frame.size.height {
+                            let offset = CGPoint(x: 0, y: toVC.tableView.contentSize.height - toVC.tableView.frame.size.height)
+                            toVC.tableView.setContentOffset(offset, animated: true)
+                        }
+
+
                         
                     }
-                    
-                    
                 }
             )
             
@@ -113,20 +107,18 @@ class InteractiveAnimator: UIPercentDrivenInteractiveTransition, UIViewControlle
         
         // now lets deal with different states that the gesture recognizer sends
         switch (pan.state) {
-            
-        
-            
         case UIGestureRecognizerState.Changed:
-            
+            println("Changed")
+
             // update progress of the transition
             self.updateInteractiveTransition(d)
             break
             
         default: // .Ended, .Cancelled, .Failed ...
-            
+            println("default in")
             // return flag to false and finish the transition
             self.interactive = false
-            if(d > 0.5){
+            if(d > 0.2){
                 // threshold crossed: finish
                 self.finishInteractiveTransition()
             }
@@ -145,7 +137,6 @@ class InteractiveAnimator: UIPercentDrivenInteractiveTransition, UIViewControlle
         
         // do some math to translate this to a percentage based value
         let d =  translation.y / CGRectGetHeight(pan.view!.bounds)
-        println(translation.y)
 
         // now lets deal with different states that the gesture recognizer sends
         switch (pan.state) {
@@ -160,21 +151,18 @@ class InteractiveAnimator: UIPercentDrivenInteractiveTransition, UIViewControlle
         default: // .Ended, .Cancelled, .Failed ...
             
             // return flag to false and finish the transition
-           // self.interactive = false
+            self.interactive = false
             if(d < 0.5){
                 // threshold crossed: finish
-               // self.finishInteractiveTransition()
+                self.finishInteractiveTransition()
             }
             else {
                 // threshold not met: cancel
-               // self.cancelInteractiveTransition()
+                self.cancelInteractiveTransition()
             }
         }
         
     }
-    
-    
-    
     
     
     
@@ -183,60 +171,22 @@ class InteractiveAnimator: UIPercentDrivenInteractiveTransition, UIViewControlle
     }
     
     func offStageMenuControllerInteractive(mainViewController: MainViewController){
-        
-        mainViewController.bottomView.alpha = 0
-        
-        // setup paramaters for 2D transitions for animations
+
         let offstageOffset  :CGFloat = -450
         
-        mainViewController.bottomView.transform = self.offStage(offstageOffset)
-        mainViewController.weatherView.transform = self.offStage(offstageOffset)
-        mainViewController.whatHappenedText.transform = self.offStage(offstageOffset)
-        mainViewController.iconView.transform = self.offStage(offstageOffset)
-
-        
+        mainViewController.view.transform = self.offStage(offstageOffset)
     }
     
     
     func offStageMenuControllerInteractiveForAddBlurbViewController(blurbAddViewController: BlurbAddViewController){
         
         
-        let onStageOffset  :CGFloat = 100
+        let onStageOffset  :CGFloat = 300
         
         blurbAddViewController.view.transform = self.offStage(onStageOffset)
-        
-        
-    }
-    
-    
   
-    func onStageMenuController(mainViewController: MainViewController){
-        
-        // prepare menu to fade in
-        mainViewController.bottomView.alpha = 1
-        mainViewController.bottomView.transform = CGAffineTransformIdentity
-        mainViewController.weatherView.transform = CGAffineTransformIdentity
-        mainViewController.whatHappenedText.transform = CGAffineTransformIdentity
-        mainViewController.iconView.transform = CGAffineTransformIdentity
-
-
-        
     }
-    
-    
-    func onStageMenuControllerForBlurbAddViewController(blurbAddViewController: BlurbAddViewController){
-        
-        let onStageOffset  :CGFloat = -10
 
-        blurbAddViewController.topView.transform = self.onStage(onStageOffset)
-      
-    }
-    
-    func onStage(amount: CGFloat) -> CGAffineTransform {
-        return CGAffineTransformMakeTranslation(0, amount)
-    }
-    
-    
   
     
     
