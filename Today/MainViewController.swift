@@ -35,7 +35,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     lazy var whatHappenedText: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AvenirNext-UltraLight", size: 25)
+        label.font = UIFont(name: "AvenirNext-Regular", size: 25)
         label.textColor = UIColor.whiteColor()
         label.textAlignment = .Center
         label.text = "WHAT HAPPENED TODAY?"
@@ -45,7 +45,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         label.layer.shadowOffset = CGSizeMake(1, 1)
         label.layer.shadowOpacity = 0.4;
         label.layer.shadowRadius = 2;
-        
+        label.sizeToFit()
         
         return label
         }()
@@ -125,7 +125,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 80
+        tableView.rowHeight = 140
         
         scrollView.contentSize = CGSize(width:UIScreen.mainScreen().bounds.width, height: UIScreen.mainScreen().bounds.height)
         scrollView.alwaysBounceVertical = true
@@ -148,12 +148,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         }
         
-        
-        iconView.snp_makeConstraints { make in
-            make.top.equalTo(self.bottomView.snp_top).offset(20)
-            make.left.equalTo(10)
-        }
-
+      
         tableView.snp_makeConstraints { make in
             make.width.equalTo(self.view.snp_width)
             //make.bottom.equalTo(superview.snp_centerY)
@@ -164,17 +159,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
 
         
-        
-        weatherView.snp_makeConstraints { make in
-            make.left.equalTo(self.iconView.snp_right).offset(20)
-            make.centerY.equalTo(self.iconView.snp_centerY)
-
-        }
+      
         
         whatHappenedText.snp_makeConstraints { make in
             make.width.equalTo(self.view.snp_width)
             make.centerX.equalTo(self.bottomView.snp_centerX)
-            make.top.equalTo(70)
+            make.top.equalTo(self.bottomView.snp_top).offset(40)
             
         }
         
@@ -182,11 +172,59 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             make.width.equalTo(0.5)
             make.height.equalTo(self.tableView.snp_height)
             make.top.equalTo(0)
-            make.left.equalTo(80)
+            make.left.equalTo(85)
             
         }
         
+        iconView.snp_makeConstraints { make in
+            make.bottom.equalTo(self.bottomView.snp_bottom).offset(-20)
+            make.left.equalTo(10)
+        }
+
+        weatherView.snp_makeConstraints { make in
+            make.left.equalTo(self.iconView.snp_right).offset(20)
+            make.centerY.equalTo(self.iconView.snp_centerY)
+            
+        }
+        
+       
+        
     }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        locationService.delegate = self
+        navigationController?.delegate = self
+        println(RLMRealm.defaultRealm().path)
+        
+        tableView.registerClass(BlurbTableCell.classForCoder(), forCellReuseIdentifier: kCellId)
+        tableView.separatorStyle = .None
+        tableView.backgroundColor = UIColor.clearColor()
+        
+        
+        // add the tap gesture recognizer
+        let tap = UITapGestureRecognizer(target: self, action: Selector("didTap"))
+        bottomView.addGestureRecognizer(tap)
+        
+        objects = BlurbDate.allObjects().toArray(BlurbDate.self)
+        
+        
+        notificationToken = RLMRealm.defaultRealm().addNotificationBlock { note, realm in
+            self.objects = BlurbDate.allObjects().toArray(BlurbDate.self)
+            self.tableView.reloadData()
+        }
+        
+        
+        let pan = UIPanGestureRecognizer(target: self, action: Selector("didPan:"))
+        scrollView.panGestureRecognizer.requireGestureRecognizerToFail(pan)
+        scrollView.addGestureRecognizer(pan)
+        
+        
+    }
+
+    
     
      func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let day = objects[section]
@@ -223,43 +261,30 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let int = UInt(indexPath.row)
         let item = items[int] as! Blurb
         
-        cell.summaryLabel.text = item["summary"] as? String
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.Left
+        paragraphStyle.lineSpacing = 0
+
+        cell.summaryLabel.attributedText =
+            NSMutableAttributedString(
+                string: (item["summary"] as? String)!,
+                attributes:
+                [
+                    NSParagraphStyleAttributeName: paragraphStyle,
+                    NSKernAttributeName: -0.4
+                    
+                ])
+        cell.summaryLabel.sizeToFit()
+
         cell.timeLabel.text = item["time"] as? String
+        var iconName:String  = (item["weatherIcon"] as? String)! + " 2"
+        
+        cell.iconView.image =  UIImage(named: iconName)
+        cell.weatherLabel.text  = (item["temperature"] as? String)! + "° " + (item["weatherDescription"] as? String)!
         
         return cell
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        locationService.delegate = self
-        navigationController?.delegate = self
-
-        
-        tableView.registerClass(BlurbTableCell.classForCoder(), forCellReuseIdentifier: kCellId)
-        tableView.separatorStyle = .None
-        tableView.backgroundColor = UIColor.clearColor()
-        
-
-        // add the tap gesture recognizer
-        let tap = UITapGestureRecognizer(target: self, action: Selector("didTap"))
-        bottomView.addGestureRecognizer(tap)
-
-        objects = BlurbDate.allObjects().toArray(BlurbDate.self)
-
-
-        notificationToken = RLMRealm.defaultRealm().addNotificationBlock { note, realm in
-            self.objects = BlurbDate.allObjects().toArray(BlurbDate.self)
-            self.tableView.reloadData()
-        }
-        
-        
-        let pan = UIPanGestureRecognizer(target: self, action: Selector("didPan:"))
-        scrollView.panGestureRecognizer.requireGestureRecognizerToFail(pan)
-        scrollView.addGestureRecognizer(pan)
-
-    
-    }
     
     
     
@@ -273,10 +298,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         case .Began:
             transition.interactive = true
             let vc = BlurbAddViewController()
-            println("began")
             navigationController?.pushViewController(vc, animated: true )
+            
         default:
-             println("default")
             transition.handlePan(recognizer)
             
         }
