@@ -14,6 +14,8 @@ class Blurb: RLMObject {
     dynamic var summary = ""
     dynamic var temperature = ""
     dynamic var weatherIcon = ""
+    dynamic var weatherDescription = ""
+
     
     
 }
