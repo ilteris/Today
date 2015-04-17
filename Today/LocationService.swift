@@ -106,11 +106,5 @@ class LocationService: NSObject, CLLocationManagerDelegate {
        delegate?.updatedLocation(latitude, lon: longitude)
     
     }    
-    
-    
-    
-    
-    
-    
-    
+   
 }

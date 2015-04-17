@@ -23,11 +23,10 @@ class InteractiveAnimator: UIPercentDrivenInteractiveTransition, UIViewControlle
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        storedContext = transitionContext
         
         if operation == .Push {
             // create a tuple of our screens
-            let screens : (from:UIViewController, to:UIViewController) = (transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!, transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!)
+           
             let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! MainViewController
             let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! BlurbAddViewController
             let duration = self.transitionDuration(transitionContext)
@@ -42,36 +41,33 @@ class InteractiveAnimator: UIPercentDrivenInteractiveTransition, UIViewControlle
                 completion:  { (finished: Bool) in
                     if(transitionContext.transitionWasCancelled()){
                         transitionContext.completeTransition(false)
-
+                        
                     }
                     else {
                         
                         transitionContext.completeTransition(true)
                         fromVC.view.transform = CGAffineTransformIdentity
-                        toVC.view.transform = CGAffineTransformIdentity
-                        toVC.addBlurbTextView.becomeFirstResponder()
+                       // toVC.view.transform = CGAffineTransformIdentity
+                        toVC.addBlurbTextField.becomeFirstResponder()
 
-                        
                     }
                     
                     
                 }
             )
-            
-            
-            
+           
         } else if operation == .Pop {
             // create a tuple of our screens
-            let screens : (from:UIViewController, to:UIViewController) = (transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!, transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!)
+           
             let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! BlurbAddViewController
             let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! MainViewController
             let duration = self.transitionDuration(transitionContext)
             transitionContext.containerView().addSubview(toVC.view)
             transitionContext.containerView().addSubview(fromVC.view)
+            //toVC.view.transform = CGAffineTransformTranslate(fromVC.view.transform, 0, toVC.view.bounds.size.height-22);
+            
             UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0,  options: nil, animations: {
                 fromVC.view.transform = CGAffineTransformMakeTranslation(0, toVC.view.bounds.size.height-toVC.bottomView.bounds.size.height+22)
-
-              // self.offStageMenuControllerInteractiveForAddBlurbViewController(fromVC)
 
                 },
                 completion:  { (finished: Bool) in
@@ -108,17 +104,15 @@ class InteractiveAnimator: UIPercentDrivenInteractiveTransition, UIViewControlle
         // now lets deal with different states that the gesture recognizer sends
         switch (pan.state) {
         case UIGestureRecognizerState.Changed:
-            println("Changed")
 
             // update progress of the transition
             self.updateInteractiveTransition(d)
             break
             
         default: // .Ended, .Cancelled, .Failed ...
-            println("default in")
             // return flag to false and finish the transition
             self.interactive = false
-            if(d > 0.2){
+            if(d > 0.3){
                 // threshold crossed: finish
                 self.finishInteractiveTransition()
             }
@@ -137,56 +131,51 @@ class InteractiveAnimator: UIPercentDrivenInteractiveTransition, UIViewControlle
         
         // do some math to translate this to a percentage based value
         let d =  translation.y / CGRectGetHeight(pan.view!.bounds)
+        println(d)
 
         // now lets deal with different states that the gesture recognizer sends
         switch (pan.state) {
             
-            
         case UIGestureRecognizerState.Changed:
-            
+            println("Changed")
+
             // update progress of the transition
             self.updateInteractiveTransition(d)
             break
             
         default: // .Ended, .Cancelled, .Failed ...
-            
+            println("default in")
+
             // return flag to false and finish the transition
             self.interactive = false
-            if(d < 0.5){
+            if(d > 0.6){
+                println("crossed")
+
                 // threshold crossed: finish
                 self.finishInteractiveTransition()
             }
             else {
                 // threshold not met: cancel
+                println("cancel")
+
                 self.cancelInteractiveTransition()
             }
         }
         
     }
     
+   
     
-    
-    func offStage(amount: CGFloat) -> CGAffineTransform {
-        return CGAffineTransformMakeTranslation(0, amount)
+    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        // if our interactive flag is true, return the transition manager object
+        // otherwise return nil
+        return self.interactive ? self : nil
     }
     
-    func offStageMenuControllerInteractive(mainViewController: MainViewController){
-
-        let offstageOffset  :CGFloat = -450
-        
-        mainViewController.view.transform = self.offStage(offstageOffset)
+    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return self.interactive ? self : nil
     }
     
-    
-    func offStageMenuControllerInteractiveForAddBlurbViewController(blurbAddViewController: BlurbAddViewController){
-        
-        
-        let onStageOffset  :CGFloat = 300
-        
-        blurbAddViewController.view.transform = self.offStage(onStageOffset)
-  
-    }
-
   
     
     

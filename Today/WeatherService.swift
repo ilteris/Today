@@ -15,8 +15,6 @@ protocol ForecastIO {
     func currentWeatherData(weather:CurrentWeather)
     func failedGettingCurrentData()
 }
-
-
 class WeatherService: NSObject {
     private let API_KEY = "f16eee6b1d2b74580f38750e03ea836c";
   
@@ -26,11 +24,7 @@ class WeatherService: NSObject {
         super.init()
         
     }
-    
-
-
-
-    func getCurrentWeatherData(lon:String, lat:String) -> Void {
+        func getCurrentWeatherData(lon:String, lat:String) -> Void {
         let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(API_KEY)/")
         
         let forecastURL = NSURL(string: "\(lon),\(lat)", relativeToURL:baseURL)
