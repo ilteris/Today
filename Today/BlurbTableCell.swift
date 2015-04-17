@@ -15,6 +15,26 @@ class BlurbTableCell: UITableViewCell {
     var circleView = UIView()
     var lineView = UIView()
 
+    
+    let iconView:UIImageView =   {
+        let view = UIImageView()
+        view.backgroundColor = UIColor.clearColor()
+        return view
+        }()
+    
+    
+    lazy var weatherLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AvenirNext-Regular", size: 10)
+        label.textColor = UIColor(red: 0.131, green: 0.151, blue: 0.178, alpha: 1)
+        label.textAlignment = .Center
+        label.numberOfLines = 2
+        return label
+        }()
+    
+    
+    
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -27,20 +47,21 @@ class BlurbTableCell: UITableViewCell {
 
         timeLabel.backgroundColor = UIColor.clearColor()
         timeLabel.textColor = UIColor.blackColor()
-        timeLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 12)
-        timeLabel.textColor = UIColor(red: 0.331, green: 0.351, blue: 0.378, alpha: 1)
-        timeLabel.textAlignment = .Right
+        timeLabel.font = UIFont(name: "AvenirNext-Regular", size: 12)
+        timeLabel.textColor = UIColor(red: 0.131, green: 0.151, blue: 0.178, alpha: 1)
+        timeLabel.textAlignment = .Center
         self.contentView.addSubview(timeLabel)
         
         summaryLabel.backgroundColor = UIColor.clearColor()
         summaryLabel.textColor = UIColor.blackColor()
         summaryLabel.font = UIFont(name: "AvenirNext-UltraLight", size: 23)
         summaryLabel.textAlignment = NSTextAlignment.Left
-        summaryLabel.layer.shadowColor = UIColor.blackColor().CGColor
-        summaryLabel.layer.shadowOffset = CGSizeMake(1, 1)
-        summaryLabel.layer.shadowOpacity = 0.1
-        summaryLabel.layer.shadowRadius = 0.5
-        
+        summaryLabel.layer.shadowColor = UIColor.whiteColor().CGColor
+        summaryLabel.layer.shadowOffset = CGSizeMake(0, 1)
+        summaryLabel.layer.shadowOpacity = 1
+        summaryLabel.numberOfLines = 5
+
+   
         self.contentView.addSubview(summaryLabel)
         
         lineView.backgroundColor = UIColor.blackColor()
@@ -49,13 +70,16 @@ class BlurbTableCell: UITableViewCell {
         circleView.backgroundColor = UIColor.whiteColor()
         circleView.layer.borderWidth = 3
         circleView.layer.cornerRadius = 10
-        circleView.layer.borderColor = UIColor(red: 0.592, green: 0.808, blue: 0.771, alpha: 1.000).CGColor
+        circleView.layer.borderColor = UIColor(red: 0.531, green: 0.551, blue: 0.578, alpha: 1).CGColor
 
         self.contentView.addSubview(circleView)
-        
-        
-        
+     //   self.contentView.addSubview(iconView)
+     //   iconView.alpha = 0.5
+
+        self.contentView.addSubview(weatherLabel)
+    
     }
+    
     
     
     override func layoutSubviews() {
@@ -64,7 +88,7 @@ class BlurbTableCell: UITableViewCell {
         timeLabel.snp_makeConstraints { make in
             make.centerY.equalTo(self.contentView.snp_centerY)
             make.width.equalTo(55)
-            make.left.equalTo(5)
+            make.leading.equalTo(10)
             
         }
        
@@ -80,17 +104,31 @@ class BlurbTableCell: UITableViewCell {
      
         
         summaryLabel.snp_makeConstraints { make in
-            make.centerY.equalTo(self.contentView.snp_centerY)
-            make.left.equalTo(self.circleView.snp_right).offset(10)
+            make.top.equalTo(self.timeLabel.snp_top).offset(-10)
+            make.leading.equalTo(self.circleView.snp_right).offset(10)
+            make.trailing.equalTo(self.contentView.snp_right).offset(-10)
         }
         
         
         lineView.snp_makeConstraints { make in
             make.centerX.equalTo(self.circleView.snp_centerX)
-            make.height.equalTo(80)
+            make.height.equalTo(140)
             make.top.equalTo(0)
             make.width.equalTo(0.5)
             
+        }
+        
+//        iconView.snp_makeConstraints { make in
+//            make.centerX.equalTo(self.timeLabel.snp_centerX)
+//            make.top.equalTo(self.timeLabel.snp_bottom).offset(10)
+//            
+//        }
+        
+        weatherLabel.snp_makeConstraints { make in
+            make.centerX.equalTo(self.timeLabel.snp_centerX)
+            make.top.equalTo(self.timeLabel.snp_bottom).offset(10)
+            make.leading.equalTo(10)
+           // make.bottom.equalTo(self.contentView.snp_bottom).offset(-10)
         }
         
         
@@ -114,10 +152,22 @@ class BlurbTableCell: UITableViewCell {
                 ])
         
 
-        self.summaryLabel.text = blurb.summary;
+        self.summaryLabel.attributedText =
+            NSAttributedString(
+                string: blurb.summary,
+                attributes:
+                [
+                    NSParagraphStyleAttributeName: paragraphStyle,
+                    NSKernAttributeName: -0.4
+                    
+                ])
+            
+        
         
     }
 
     
     
 }
+
+
