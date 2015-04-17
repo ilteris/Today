@@ -34,8 +34,8 @@ class BlurbAddViewController: UIViewController {
         label.text = "WHAT HAPPENED TODAY?"
         label.numberOfLines = 2
         
-        label.layer.shadowColor = UIColor.blackColor().CGColor
-        label.layer.shadowOffset = CGSizeMake(1, 1)
+        label.layer.shadowColor = UIColor.whiteColor().CGColor
+        label.layer.shadowOffset = CGSizeMake(0, 1)
         label.layer.shadowOpacity = 0.4;
         label.layer.shadowRadius = 2;
         
@@ -60,17 +60,17 @@ class BlurbAddViewController: UIViewController {
     
     
     
-    lazy var addBlurbTextView: UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont(name: "AvenirNext-UltraLight", size: 35)
-        textView.textColor = UIColor.blackColor()
-        textView.textAlignment = .Center
-        textView.text = ""
-        textView.backgroundColor = UIColor.clearColor()
-
-        
-        
-        return textView
+    lazy var addBlurbTextField: UITextField = {
+        let textField = UITextField()
+        textField.font = UIFont(name: "AvenirNext-Regular", size: 35)
+        textField.textColor = UIColor.blackColor()
+        textField.textAlignment = .Left
+        textField.text = ""
+        textField.backgroundColor = UIColor.clearColor()
+        textField.returnKeyType = .Done
+        textField.addTarget(self, action: "textFieldDidReturn:", forControlEvents: .EditingDidEndOnExit)
+        textField.adjustsFontSizeToFitWidth = true
+        return textField
         }()
 
     let okBtn:UIButton =   {
@@ -107,13 +107,10 @@ class BlurbAddViewController: UIViewController {
         topView.addSubview(iconView)
         topView.addSubview(weatherView)
         topView.addSubview(whatHappenedText)
-        superview.addSubview(addBlurbTextView)
+        superview.addSubview(addBlurbTextField)
         superview.addSubview(okBtn)
         
         okBtn.addTarget(self, action: "okBtnTapped:", forControlEvents:.TouchUpInside)
-
-        
-        
         
         topView.snp_makeConstraints { make in
             make.width.equalTo(superview.snp_width)
@@ -122,29 +119,26 @@ class BlurbAddViewController: UIViewController {
         }
         
         iconView.snp_makeConstraints { make in
-            make.top.equalTo(self.topView.snp_top).offset(20)
+            make.bottom.equalTo(self.topView.snp_bottom).offset(-20)
             make.left.equalTo(10)
         }
-        
-        
-        
         
         weatherView.snp_makeConstraints { make in
             make.left.equalTo(self.iconView.snp_right).offset(20)
             make.centerY.equalTo(self.iconView.snp_centerY)
             
         }
-
         
+      
         
         whatHappenedText.snp_makeConstraints { make in
             make.width.equalTo(self.view.snp_width)
             make.centerX.equalTo(self.view.snp_centerX)
-            make.top.equalTo(70)
+            make.top.equalTo(self.topView.snp_top).offset(40)
 
         }
         
-        addBlurbTextView.snp_makeConstraints { make in
+        addBlurbTextField.snp_makeConstraints { make in
             make.width.equalTo(self.view.snp_width).offset(-20)
             make.height.equalTo(200)
             make.centerX.equalTo(self.view.snp_centerX)
@@ -159,13 +153,27 @@ class BlurbAddViewController: UIViewController {
             make.centerY.equalTo(self.view.snp_centerY).offset(40)
             
         }
-        
-        
-        
-        
-        
+
     }
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        var currentWeather = BlurbsManager.sharedInstance.currentWeather
+        
+        weatherView.text = String(currentWeather.temperature) + "°" + " " + currentWeather.summary
+        self.iconView.image =  UIImage(named: currentWeather.iconString)
+        
+        let pan = UIPanGestureRecognizer(target: self, action: Selector("didPan:"))
+        view.addGestureRecognizer(pan)
+
+    }
+
+    func textFieldDidReturn(textField: UITextField!) {
+        textField.sizeToFit()
+        textField.resignFirstResponder()
+        ///activate pan after keyboard is gone
+         }
     
     func writeBlurp() {
         //get time
@@ -194,9 +202,10 @@ class BlurbAddViewController: UIViewController {
         var newBlurb = Blurb()
         
         // Set & read properties
-        newBlurb.summary = addBlurbTextView.text!
+        newBlurb.summary = addBlurbTextField.text!
         newBlurb.temperature = BlurbsManager.sharedInstance.currentWeather.temperature
         newBlurb.weatherIcon = BlurbsManager.sharedInstance.currentWeather.iconString
+        newBlurb.weatherDescription = BlurbsManager.sharedInstance.currentWeather.summary
         newBlurb.time = timeFormatter.stringFromDate(date)
         
         let realm = RLMRealm.defaultRealm() // Create realm pointing to default file
@@ -239,14 +248,14 @@ class BlurbAddViewController: UIViewController {
     }
     func okBtnTapped(sender: UIButton!) {
         
-        if addBlurbTextView.text != "" {
+        if addBlurbTextField.text != "" {
             
             writeBlurp()
             
             
         }
         transition.interactive = true
-        addBlurbTextView.resignFirstResponder()
+        addBlurbTextField.resignFirstResponder()
         if let navController = self.navigationController {
             navController.popViewControllerAnimated(true)
             
@@ -255,42 +264,23 @@ class BlurbAddViewController: UIViewController {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        var currentWeather = BlurbsManager.sharedInstance.currentWeather
-        
-        weatherView.text = String(currentWeather.temperature) + "°" + " " + currentWeather.summary
-        self.iconView.image =  UIImage(named: currentWeather.iconString)
-        
-        
-        let pan = UIPanGestureRecognizer(target: self, action: Selector("didPan:"))
-        view.addGestureRecognizer(pan)
-        
-        
-
-    }
-
+   
     
     func didPan(recognizer: UIPanGestureRecognizer) {
         switch recognizer.state {
         case .Began:
-            
-            if addBlurbTextView.text != "" {
-               
+            if addBlurbTextField.text != "" {
                 writeBlurp()
-                
-               
             }
             transition.interactive = true
-            addBlurbTextView.resignFirstResponder()
+            addBlurbTextField.resignFirstResponder()
             if let navController = self.navigationController {
                 navController.popViewControllerAnimated(true)
-                
             }
 
-            
-
         default:
+            println("default")
+
             transition.handleBlurbPan(recognizer)
         }
     }
@@ -303,7 +293,7 @@ class BlurbAddViewController: UIViewController {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+        return UIStatusBarStyle.Default
     }
 
     /*
