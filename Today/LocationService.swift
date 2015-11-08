@@ -33,7 +33,7 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                 case .Denied:
                         /* No. */
                         //displayAlertWithTitle("Not Determined", message: "Location services are not allowed for this app")
-                        println("Location services are not allowed for this app")
+                        print("Location services are not allowed for this app")
 
                 case .NotDetermined:
                         /* We don't know yet; we have to ask */
@@ -47,44 +47,44 @@ class LocationService: NSObject, CLLocationManagerDelegate {
                         | 419
                         to location services. */
                        // displayAlertWithTitle("Restricted", message: "Location services are not allowed for this app")
-                        println("Location services are not allowed for this app")
+                        print("Location services are not allowed for this app")
                 default:
-                        println("default")
+                        print("default")
             }
             
         } else {
             /* Location services are not enabled.
             Take appropriate action: for instance, prompt the user to enable the location services. */
-            println("Location services are not enabled")
+            print("Location services are not enabled")
         }
         
         
     }
     
     
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus){
-        print("The authorization status of location services is changed to: ")
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus){
+        print("The authorization status of location services is changed to: ", terminator: "")
         switch CLLocationManager.authorizationStatus() {
     case .AuthorizedWhenInUse:
-        println("Authorized when in use")
+        print("Authorized when in use")
         manager.startUpdatingLocation()
 
     case .Denied:
-        println("Denied")
+        print("Denied")
     case .NotDetermined:
-        println("Not determined")
+        print("Not determined")
     case .Restricted:
-        println("Restricted")
+        print("Restricted")
     default:
-        println("Unhandled")
+        print("Unhandled")
         }
     }
        
     
-    func createLocationManager(#startImmediately: Bool) {
+    func createLocationManager(startImmediately startImmediately: Bool) {
         coreLocationManager = CLLocationManager()
         if let manager = coreLocationManager {
-            println("Successfully created the location manager")
+            print("Successfully created the location manager")
                 manager.delegate = self
                 if startImmediately {
                 manager.startUpdatingLocation()
@@ -93,15 +93,15 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         }
     }
         
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!){
-            println("Location manager failed with error = \(error)")
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError){
+            print("Location manager failed with error = \(error)")
     }
     
     
 
     func locationManager(manager: CLLocationManager!, didUpdateToLocation newLocation: CLLocation!, fromLocation oldLocation: CLLocation!){
-        var latitude:String = "\(newLocation.coordinate.latitude)"
-        var longitude:String = "\(newLocation.coordinate.longitude)"
+        let latitude:String = "\(newLocation.coordinate.latitude)"
+        let longitude:String = "\(newLocation.coordinate.longitude)"
         coreLocationManager?.stopUpdatingLocation()
        delegate?.updatedLocation(latitude, lon: longitude)
     

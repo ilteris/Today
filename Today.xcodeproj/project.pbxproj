@@ -16,7 +16,6 @@
 		A260F0741AD86C9600C18EB6 /* Blurb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0731AD86C9600C18EB6 /* Blurb.swift */; };
 		A260F0771AD875EB00C18EB6 /* BlurbTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0761AD875EB00C18EB6 /* BlurbTableCell.swift */; };
 		A260F0791AD8769400C18EB6 /* BlurbsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0781AD8769400C18EB6 /* BlurbsManager.swift */; };
-		A260F08E1AD879D400C18EB6 /* Snap.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A260F0841AD877E900C18EB6 /* Snap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A260F0921ADAC21800C18EB6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A260F0911ADAC21700C18EB6 /* CoreLocation.framework */; };
 		A260F0941ADAC2F900C18EB6 /* Location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = A260F0931ADAC2F900C18EB6 /* Location.gpx */; };
 		A260F0961ADAC36100C18EB6 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260F0951ADAC36100C18EB6 /* LocationService.swift */; };
@@ -25,7 +24,7 @@
 		A2FEBD981ADC3712009EA785 /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD971ADC3712009EA785 /* RLMSupport.swift */; };
 		A2FEBD9D1ADC58FB009EA785 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD9C1ADC58FB009EA785 /* SectionHeaderView.swift */; };
 		A2FEBD9F1ADC73B1009EA785 /* InteractiveAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEBD9E1ADC73B1009EA785 /* InteractiveAnimator.swift */; };
-		D59AB225B0AD272F30D3B359 /* Pods_Today.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEB7661DF03D926634F72D7 /* Pods_Today.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D59AB225B0AD272F30D3B359 /* Pods_Today.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEB7661DF03D926634F72D7 /* Pods_Today.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,41 +35,6 @@
 			remoteGlobalIDString = A260F04B1AD866BA00C18EB6;
 			remoteInfo = Today;
 		};
-		A260F0811AD877E900C18EB6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EEBCC9D819CC627D0083B827;
-			remoteInfo = "Snap iOS";
-		};
-		A260F0831AD877E900C18EB6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EECDB37A1AC0C9D4006BBC11;
-			remoteInfo = "Snap OSX";
-		};
-		A260F0851AD877E900C18EB6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EEBCC9E219CC627E0083B827;
-			remoteInfo = "Snap iOS Tests";
-		};
-		A260F0871AD877E900C18EB6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EECDB3841AC0C9D4006BBC11;
-			remoteInfo = "Snap OSX Tests";
-		};
-		A260F08A1AD8798900C18EB6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = EEBCC9D719CC627D0083B827;
-			remoteInfo = "Snap iOS";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,7 +44,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A260F08E1AD879D400C18EB6 /* Snap.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,7 +66,6 @@
 		A260F0731AD86C9600C18EB6 /* Blurb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blurb.swift; sourceTree = "<group>"; };
 		A260F0761AD875EB00C18EB6 /* BlurbTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurbTableCell.swift; sourceTree = "<group>"; };
 		A260F0781AD8769400C18EB6 /* BlurbsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurbsManager.swift; sourceTree = "<group>"; };
-		A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Snap.xcodeproj; path = Snap/Snap.xcodeproj; sourceTree = "<group>"; };
 		A260F0911ADAC21700C18EB6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A260F0931ADAC2F900C18EB6 /* Location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		A260F0951ADAC36100C18EB6 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
@@ -151,7 +113,6 @@
 			children = (
 				A2FEBD971ADC3712009EA785 /* RLMSupport.swift */,
 				A260F0911ADAC21700C18EB6 /* CoreLocation.framework */,
-				A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */,
 				A260F04E1AD866BA00C18EB6 /* Today */,
 				A260F0641AD866BA00C18EB6 /* TodayTests */,
 				A260F04D1AD866BA00C18EB6 /* Products */,
@@ -218,17 +179,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A260F07B1AD877E900C18EB6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A260F0821AD877E900C18EB6 /* Snap.framework */,
-				A260F0841AD877E900C18EB6 /* Snap.framework */,
-				A260F0861AD877E900C18EB6 /* Snap iOS Tests.xctest */,
-				A260F0881AD877E900C18EB6 /* Snap OSX Tests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		AA23ED788DF8830E03DB02B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +205,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A260F08B1AD8798900C18EB6 /* PBXTargetDependency */,
 			);
 			name = Today;
 			productName = Today;
@@ -286,7 +235,9 @@
 		A260F0441AD866BA00C18EB6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = ilteris;
 				TargetAttributes = {
 					A260F04B1AD866BA00C18EB6 = {
@@ -309,12 +260,6 @@
 			mainGroup = A260F0431AD866BA00C18EB6;
 			productRefGroup = A260F04D1AD866BA00C18EB6 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = A260F07B1AD877E900C18EB6 /* Products */;
-					ProjectRef = A260F07A1AD877E900C18EB6 /* Snap.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				A260F04B1AD866BA00C18EB6 /* Today */,
@@ -322,37 +267,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		A260F0821AD877E900C18EB6 /* Snap.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Snap.framework;
-			remoteRef = A260F0811AD877E900C18EB6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A260F0841AD877E900C18EB6 /* Snap.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Snap.framework;
-			remoteRef = A260F0831AD877E900C18EB6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A260F0861AD877E900C18EB6 /* Snap iOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Snap iOS Tests.xctest";
-			remoteRef = A260F0851AD877E900C18EB6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A260F0881AD877E900C18EB6 /* Snap OSX Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Snap OSX Tests.xctest";
-			remoteRef = A260F0871AD877E900C18EB6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A260F04A1AD866BA00C18EB6 /* Resources */ = {
@@ -458,11 +372,6 @@
 			target = A260F04B1AD866BA00C18EB6 /* Today */;
 			targetProxy = A260F0621AD866BA00C18EB6 /* PBXContainerItemProxy */;
 		};
-		A260F08B1AD8798900C18EB6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Snap iOS";
-			targetProxy = A260F08A1AD8798900C18EB6 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -498,6 +407,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -564,7 +474,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Today/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
@@ -578,7 +490,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Today/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/$(PROJECT_NAME)/**";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
@@ -600,6 +514,7 @@
 				);
 				INFOPLIST_FILE = TodayTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Today.app/Today";
 			};
@@ -615,6 +530,7 @@
 				);
 				INFOPLIST_FILE = TodayTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Today.app/Today";
 			};

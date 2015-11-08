@@ -30,18 +30,22 @@ class SectionHeaderView: UIView {
         
         //		backgroundColor = UIColor(white: 1, alpha: 0.95)
         addSubview(titleLabel)
-        
-        titleLabel.snp_makeConstraints { make in
-            make.centerY.equalTo(self.snp_centerY)
-            make.left.equalTo(self.snp_left).offset(10)
-            make.top.equalTo(self.snp_top).offset(20)
 
-        }
-        
-        
+      titleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+      let titleLabel_centerY =  titleLabel.centerYAnchor.constraintEqualToAnchor(self.centerYAnchor)
+      let  titleLabel_left =  titleLabel.leftAnchor.constraintEqualToAnchor(self.leftAnchor, constant: 10)
+      let  titleLabel_top =  titleLabel.topAnchor.constraintEqualToAnchor(self.topAnchor, constant: 20)
+
+      NSLayoutConstraint.activateConstraints([
+        titleLabel_centerY,
+        titleLabel_left,
+        titleLabel_top,
+               ])
+
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }

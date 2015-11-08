@@ -14,14 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        
-        var viewController : MainViewController  = MainViewController()
-        var navController: UINavigationController = UINavigationController (rootViewController: viewController)
-        navController.navigationBarHidden = true
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window!.rootViewController = navController
+        window!.backgroundColor = UIColor.whiteColor()
         window!.makeKeyAndVisible()
+
+        let viewController : MainViewController  = MainViewController()
+        let navController: UINavigationController = UINavigationController (rootViewController: viewController)
+        navController.navigationBarHidden = true
+
+        window!.rootViewController = navController
 
         return true
     }

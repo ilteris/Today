@@ -3,7 +3,7 @@
 use_frameworks!
 
 target 'Today' do
- pod  'Realm'
+ pod 'RealmSwift'
 end
 
 target 'TodayTests' do
